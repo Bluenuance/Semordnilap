@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc>
+<assembly><name>Semordnilap</name></assembly>
+<members>
+<member name="T:Program.Main">
+<summary>
+ Strings are fundamental data types in F#.  Here are some examples of Strings and basic String manipulation.
+
+ To learn more, see: https://docs.microsoft.com/en-us/dotnet/articles/fsharp/language-reference/strings
+</summary>
+</member>
+</members>
+</doc>
