@@ -1,0 +1,18 @@
+﻿<Window x:Class="Semordnilap.View.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Semordnilap.View"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <TextBox Name="CodeBlock" HorizontalAlignment="Left" Height="66" Margin="10,52,0,0" Text="{Binding Path=TextCode, Mode=TwoWay}" TextWrapping="Wrap" VerticalAlignment="Top" Width="265"/>
+        <RadioButton IsEnabled="False" GroupName="NAType" Content="DNA" HorizontalAlignment="Left" Height="22" Margin="120,123,0,0" VerticalAlignment="Top" Width="69"/>
+        <RadioButton IsEnabled="False" GroupName="NAType" Content="RNA" HorizontalAlignment="Left" Height="25" Margin="189,123,0,0" VerticalAlignment="Top" Width="81"/>
+        <Label Content="facing strand" HorizontalAlignment="Left" Height="28" Margin="442,10,0,0" VerticalAlignment="Top" Width="220"/>
+        <!--Reverse Complementary Sequence-->
+        <TextBlock Text="{Binding Path=TextCode, Mode=OneWay, Converter={StaticResource ReverseComplementarySequenceConverter}}" HorizontalAlignment="Left" Height="66" Margin="425,52,0,0" VerticalAlignment="Top" Width="276"/>
+        <Button Content="Button" HorizontalAlignment="Left" Height="58" Margin="270,285,0,0" VerticalAlignment="Top" Width="194" Click="Button_Click"/>
+    </Grid>
+</Window>

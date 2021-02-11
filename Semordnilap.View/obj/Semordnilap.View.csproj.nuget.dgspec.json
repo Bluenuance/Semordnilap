@@ -1,0 +1,82 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\Semordnilap\\Semordnilap.View\\Semordnilap.View.csproj": {}
+  },
+  "projects": {
+    "D:\\Semordnilap\\Semordnilap.View\\Semordnilap.View.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Semordnilap\\Semordnilap.View\\Semordnilap.View.csproj",
+        "projectName": "Semordnilap.View",
+        "projectPath": "D:\\Semordnilap\\Semordnilap.View\\Semordnilap.View.csproj",
+        "packagesPath": "C:\\Users\\Manuel\\.nuget\\packages\\",
+        "outputPath": "D:\\Semordnilap\\Semordnilap.View\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Manuel\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {
+              "D:\\Semordnilap\\Semordnilap\\Semordnilap.fsproj": {
+                "projectPath": "D:\\Semordnilap\\Semordnilap\\Semordnilap.fsproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            },
+            "Microsoft.WindowsDesktop.App.WPF": {
+              "privateAssets": "none"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Semordnilap\\Semordnilap\\Semordnilap.fsproj": {
+      "restore": {
+        "projectUniqueName": "D:\\Semordnilap\\Semordnilap\\Semordnilap.fsproj",
+        "projectName": "Semordnilap",
+        "projectPath": "D:\\Semordnilap\\Semordnilap\\Semordnilap.fsproj"
+      },
+      "frameworks": {
+        "net472": {}
+      }
+    }
+  }
+}

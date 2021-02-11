@@ -49,6 +49,7 @@
   <ItemGroup>
     <Content Include="packages.config" />
     <Compile Include="Nucleobase.fs" />
+    <Compile Include="DNA.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
   <ItemGroup>

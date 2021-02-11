@@ -1,38 +1,52 @@
-﻿module Nucleobase
+﻿namespace Semordnilap
 
-//    module Purines
+open System
 
-//interface type INucleobase =
-//   //abstract member Add: int -> int -> int
-//   abstract (*member *)Sign: char
-//   // abstract read/write property
-//   //abstract member Area : float with get,set
-//end
+//    module Purines/Pyrimidines
 
+//should not be a base class, just an interface (was done like this, because of verbosity with ToString in each type)
+[<AbstractClass>]
+type Nucleobase() =
+    abstract member Sign: char
+    abstract member Opposite: unit -> Nucleobase //TODO: bases should not know their own opposite (else we have a problem using those for RNA)
+    override this.ToString() = String(this.Sign, 1)
 
-type INucleobase =
-    interface
-        abstract member Sign: char
-        abstract Opposite: INucleobase
-    end
 
 type Adenine() =
-    interface INucleobase with
-        member this.Sign = 'A'
-        member this.Opposite() = Thymine()
-        
+    inherit Nucleobase()
+    override this.Sign = 'A'
+    override this.Opposite() = Thymine() :> Nucleobase
+            
 and Cytosine() =
-    interface INucleobase with
-        member this.Sign = 'C'
-        member this.Opposite() = Guanine()
+    inherit Nucleobase()
+    override this.Sign = 'C'
+    override this.Opposite() = Guanine() :> Nucleobase
         
 and Guanine() =
-    interface INucleobase with
-        member this.Sign = 'G'
-        member this.Opposite() = Cytosine()
+    inherit Nucleobase()
+    override this.Sign = 'G'
+    override this.Opposite() = Cytosine() :> Nucleobase
 
 and Thymine() =
-    interface INucleobase with
-        member this.Sign = 'T'
-        member this.Opposite() = Adenine()
+    inherit Nucleobase()
+    override this.Sign = 'T'
+    override this.Opposite() = Adenine() :> Nucleobase
 
+
+and Nucleobases = 
+    static member FromSign(sign: char) = 
+        match sign with
+        | 'A' -> Adenine() :> Nucleobase
+        | 'C' -> Cytosine() :> Nucleobase
+        | 'G' -> Guanine() :> Nucleobase
+        | 'T' -> Thymine() :> Nucleobase
+        | _ -> raise (NotSupportedException())
+
+    //TODO: remove if not necessary
+    //static member FromSign(sign: string) = 
+    //    match sign with
+    //    | "A" -> Adenine() :> Nucleobase
+    //    | "C" -> Cytosine() :> Nucleobase
+    //    | "G" -> Guanine() :> Nucleobase
+    //    | "T" -> Thymine() :> Nucleobase
+    //    | _ -> raise (NotSupportedException())
