@@ -1,30 +1,11 @@
 {
   "version": 3,
   "targets": {
-    ".NETCoreApp,Version=v3.1": {
-      "Semordnilap.Common/1.0.0": {
-        "type": "project",
-        "framework": ".NETStandard,Version=v2.1",
-        "compile": {
-          "bin/placeholder/Semordnilap.Common.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Semordnilap.Common.dll": {}
-        }
-      }
-    }
+    ".NETStandard,Version=v2.1": {}
   },
-  "libraries": {
-    "Semordnilap.Common/1.0.0": {
-      "type": "project",
-      "path": "../Semordnilap.Common/Semordnilap.Common.csproj",
-      "msbuildProject": "../Semordnilap.Common/Semordnilap.Common.csproj"
-    }
-  },
+  "libraries": {},
   "projectFileDependencyGroups": {
-    ".NETCoreApp,Version=v3.1": [
-      "Semordnilap.Common >= 1.0.0"
-    ]
+    ".NETStandard,Version=v2.1": []
   },
   "packageFolders": {
     "C:\\Users\\Manuel\\.nuget\\packages\\": {},
@@ -33,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Semordnilap\\Semordnilap.View\\Semordnilap.View.csproj",
-      "projectName": "Semordnilap.View",
-      "projectPath": "D:\\Semordnilap\\Semordnilap.View\\Semordnilap.View.csproj",
+      "projectUniqueName": "D:\\Semordnilap\\Semordnilap.Common\\Semordnilap.Common.csproj",
+      "projectName": "Semordnilap.Common",
+      "projectPath": "D:\\Semordnilap\\Semordnilap.Common\\Semordnilap.Common.csproj",
       "packagesPath": "C:\\Users\\Manuel\\.nuget\\packages\\",
-      "outputPath": "D:\\Semordnilap\\Semordnilap.View\\obj\\",
+      "outputPath": "D:\\Semordnilap\\Semordnilap.Common\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -47,20 +28,16 @@
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
-        "netcoreapp3.1"
+        "netstandard2.1"
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
-        "netcoreapp3.1": {
-          "targetAlias": "netcoreapp3.1",
-          "projectReferences": {
-            "D:\\Semordnilap\\Semordnilap.Common\\Semordnilap.Common.csproj": {
-              "projectPath": "D:\\Semordnilap\\Semordnilap.Common\\Semordnilap.Common.csproj"
-            }
-          }
+        "netstandard2.1": {
+          "targetAlias": "netstandard2.1",
+          "projectReferences": {}
         }
       },
       "warningProperties": {
@@ -70,8 +47,8 @@
       }
     },
     "frameworks": {
-      "netcoreapp3.1": {
-        "targetAlias": "netcoreapp3.1",
+      "netstandard2.1": {
+        "targetAlias": "netstandard2.1",
         "imports": [
           "net461",
           "net462",
@@ -83,11 +60,8 @@
         "assetTargetFallback": true,
         "warn": true,
         "frameworkReferences": {
-          "Microsoft.NETCore.App": {
+          "NETStandard.Library": {
             "privateAssets": "all"
-          },
-          "Microsoft.WindowsDesktop.App.WPF": {
-            "privateAssets": "none"
           }
         },
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"

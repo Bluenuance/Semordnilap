@@ -12,6 +12,7 @@ module Main =
     type G = Guanine
     type T = Thymine
 
+    //ATGCTGATCTTGGCCATCAATG
     let code: Nucleobase list = [ A();T();G();C();T();G();A();T();C();T();T();G();G();C();C();A();T();C();A();A();T();G(); ]
 
     let dna = DNA(code)

@@ -1,13 +1,25 @@
 ﻿namespace Semordnilap
 
-type DNA(code: list<Nucleobase>) =
+///TODO: (re)move
+type _NA = 
     
-    new(letterCodes: string) = 
-        let arrayLetterCodes = letterCodes :> seq<char>
-        let c = List.map (fun x -> Nucleobases.FromSign(x: char)) (List.ofSeq arrayLetterCodes)
-        DNA(c)
+    static member IsDnaPart(nucleobase: Nucleobase) = 
+        match nucleobase with
+        | _ -> true
 
-    member private this.Code = code
+    static member IsDna(code: seq<Nucleobase>): bool = code |> Seq.forall (fun x -> _NA.IsDnaPart(x))
+        
+
+type DNA(code: list<Nucleobase>) =
+
+    static member ValidLetters(code: string): bool = code |> Seq.forall (fun x -> DNA.ValidLetter(x))
+    
+    static member ValidLetter(sign: char) = 
+        match sign with
+        | 'A' | 'C' | 'G' | 'T' -> true
+        | _ -> false
+
+    member this.Code: list<Nucleobase> = code
     
     member private this.Reverse(code: list<Nucleobase>) = Seq.rev code
     member private this.Complementary(code: seq<Nucleobase>) = code |> Seq.map (fun x -> x.Opposite())
@@ -15,5 +27,3 @@ type DNA(code: list<Nucleobase>) =
     ///complementary, reverse
     member this.FacingStrand() = this.Complementary (this.Reverse this.Code)
         
-
-

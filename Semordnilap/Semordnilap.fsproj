@@ -50,6 +50,11 @@
     <Content Include="packages.config" />
     <Compile Include="Nucleobase.fs" />
     <Compile Include="DNA.fs" />
+    <Compile Include="RNA.fs" />
+    <Compile Include="Transkription.fs" />
+    <Compile Include="AminoAcids.fs" />
+    <Compile Include="Protein.fs" />
+    <Compile Include="Translation.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
   <ItemGroup>

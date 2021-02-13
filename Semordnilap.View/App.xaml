@@ -5,5 +5,7 @@
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <local:ReverseComplementarySequenceConverter x:Key="ReverseComplementarySequenceConverter"/>
+        <local:NucleobaseTextCodeConverter x:Key="NucleobaseTextCodeConverter"/>
+        <local:AminoAcidsTextCodeConverter x:Key="AminoAcidsTextCodeConverter"/>
     </Application.Resources>
 </Application>

@@ -1,6 +1,9 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using Semordnilap.Common;
 
 namespace Semordnilap.View
 {
@@ -10,8 +13,14 @@ namespace Semordnilap.View
     /// </summary>
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
-        public static readonly DependencyProperty TextCodeProperty =
-            DependencyProperty.Register("TextCode", typeof(string), typeof(TextBox), new PropertyMetadata(null));
+        public static readonly DependencyProperty DnaCodeProperty =
+            DependencyProperty.Register(nameof(DnaCode), typeof(IList<INucleobase>), typeof(TextBox), new PropertyMetadata(null));
+
+        public static readonly DependencyProperty RnaCodeProperty =
+            DependencyProperty.Register(nameof(RnaCode), typeof(IList<INucleobase>), typeof(TextBox), new PropertyMetadata(null));
+
+        public static readonly DependencyProperty AminoAcidsProperty =
+            DependencyProperty.Register(nameof(AminoAcids), typeof(IEnumerable<IAminoAcid>), typeof(TextBox), new PropertyMetadata(null));
 
         public MainWindow()
         {
@@ -19,19 +28,49 @@ namespace Semordnilap.View
 
             DataContext = this;
 
-            TextCode = "GAC";
+            DnaCode = new List<INucleobase> {
+                new Adenine(), new Thymine(), new Guanine(), new Cytosine(), new Thymine(), new Guanine(),
+                new Adenine(), new Thymine(), new Cytosine(), new Thymine(), new Thymine(), new Guanine(),
+                new Guanine(), new Cytosine(), new Cytosine(), new Adenine(), new Thymine(), new Cytosine(),
+                new Adenine(), new Adenine(), new Thymine() };
+            RnaCode = new List<INucleobase>();
+            AminoAcids = new List<IAminoAcid>();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        //TODO: Property should be List<Nucleobase>, use a converter
-        public string TextCode
+        public IList<INucleobase> DnaCode
         {
-            get { return (string)GetValue(TextCodeProperty); }
+            get { return (IList<INucleobase>)GetValue(DnaCodeProperty); }
             set { 
-                SetValue(TextCodeProperty, value);
-                OnPropertyChanged("TextCode");
+                SetValue(DnaCodeProperty, value);
+                OnPropertyChanged(nameof(DnaCode));
             }
+        }
+
+        public IList<INucleobase> RnaCode
+        {
+            get { return (IList<INucleobase>)GetValue(RnaCodeProperty); }
+            set
+            {
+                SetValue(RnaCodeProperty, value);
+                OnPropertyChanged(nameof(RnaCode));
+            }
+        }
+
+        public IEnumerable<IAminoAcid> AminoAcids
+        {
+            get { return (IEnumerable<IAminoAcid>)GetValue(AminoAcidsProperty); }
+            set
+            {
+                SetValue(AminoAcidsProperty, value);
+                OnPropertyChanged(nameof(AminoAcids));
+            }
+        }
+
+        private void TranscribeButton_Click(object sender, RoutedEventArgs e)
+        {
+            RnaCode = Transkription.ToRna(new DNA(DnaCode)).Code.ToList();
         }
 
         protected virtual void OnPropertyChanged(string propertyName)
@@ -39,11 +78,10 @@ namespace Semordnilap.View
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void TranslateButton_Click(object sender, RoutedEventArgs e)
         {
-            //testbutton
+            AminoAcids = Translation.ToProtein(RnaCode).AminoAcids.ToList();
         }
-
     }
 
 

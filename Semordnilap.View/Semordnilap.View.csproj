@@ -7,12 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Semordnilap\Semordnilap.fsproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="FSharp.Core">
-      <HintPath>..\packages\FSharp.Core.4.6.2\lib\net45\FSharp.Core.dll</HintPath>
-    </Reference>
+    <ProjectReference Include="..\Semordnilap.Common\Semordnilap.Common.csproj" />
   </ItemGroup>
 
 </Project>
