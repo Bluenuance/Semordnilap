@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 
 namespace Semordnilap.Common
 {
 
-    public class Protein
+    public class Protein : ISequence<IAminoAcid>
     {
         private readonly IList<IAminoAcid> _aminoAcids;
 
@@ -12,13 +13,22 @@ namespace Semordnilap.Common
             _aminoAcids = new List<IAminoAcid>();
         }
 
-        public IEnumerable<IAminoAcid> AminoAcids => _aminoAcids;
+        public string Description { get; set; }
 
         public void Add(IAminoAcid aminoAcid)
         {
             _aminoAcids.Add(aminoAcid);
         }
 
+        public IEnumerator<IAminoAcid> GetEnumerator()
+        {
+            return _aminoAcids.GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return _aminoAcids.GetEnumerator();
+        }
     }
 }
 

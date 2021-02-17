@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -38,6 +40,8 @@ namespace Semordnilap.View
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
+
+        //todo: model
 
         public IList<INucleobase> DnaCode
         {
@@ -80,7 +84,22 @@ namespace Semordnilap.View
 
         private void TranslateButton_Click(object sender, RoutedEventArgs e)
         {
-            AminoAcids = Translation.ToProtein(RnaCode).AminoAcids.ToList();
+            AminoAcids = Translation.ToProtein(RnaCode).ToList();
+        }
+
+        private void LoadFastaFileButton_Click(object sender, RoutedEventArgs e)
+        {
+            ImportModel import = (ImportModel)((Control)sender).DataContext;
+
+            //TODO: file Validation Rule instead
+            bool exists = File.Exists(import.FilePath);
+            Debug.Assert(exists);
+
+            using(FileStream inputStream = File.OpenRead(import.FilePath))
+            {
+                AminoAcids = import.InputSequence.Parse(inputStream).ToList();
+            }
+
         }
     }
 
