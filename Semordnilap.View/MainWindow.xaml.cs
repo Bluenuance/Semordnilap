@@ -19,10 +19,10 @@ namespace Semordnilap.View
             DependencyProperty.Register(nameof(DnaCode), typeof(IList<INucleobase>), typeof(TextBox), new PropertyMetadata(null));
 
         public static readonly DependencyProperty RnaCodeProperty =
-            DependencyProperty.Register(nameof(RnaCode), typeof(IList<INucleobase>), typeof(TextBox), new PropertyMetadata(null));
+            DependencyProperty.Register(nameof(RnaCode), typeof(ISequence<INucleobase>), typeof(TextBox), new PropertyMetadata(null));
 
         public static readonly DependencyProperty AminoAcidsProperty =
-            DependencyProperty.Register(nameof(AminoAcids), typeof(IEnumerable<IAminoAcid>), typeof(TextBox), new PropertyMetadata(null));
+            DependencyProperty.Register(nameof(AminoAcids), typeof(ISequence<IAminoAcid>), typeof(TextBox), new PropertyMetadata(null));
 
         public MainWindow()
         {
@@ -35,8 +35,8 @@ namespace Semordnilap.View
                 new Adenine(), new Thymine(), new Cytosine(), new Thymine(), new Thymine(), new Guanine(),
                 new Guanine(), new Cytosine(), new Cytosine(), new Adenine(), new Thymine(), new Cytosine(),
                 new Adenine(), new Adenine(), new Thymine() };
-            RnaCode = new List<INucleobase>();
-            AminoAcids = new List<IAminoAcid>();
+            RnaCode = new RNA();
+            AminoAcids = new Protein();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -52,9 +52,9 @@ namespace Semordnilap.View
             }
         }
 
-        public IList<INucleobase> RnaCode
+        public ISequence<INucleobase> RnaCode
         {
-            get { return (IList<INucleobase>)GetValue(RnaCodeProperty); }
+            get { return (ISequence<INucleobase>)GetValue(RnaCodeProperty); }
             set
             {
                 SetValue(RnaCodeProperty, value);
@@ -62,9 +62,9 @@ namespace Semordnilap.View
             }
         }
 
-        public IEnumerable<IAminoAcid> AminoAcids
+        public ISequence<IAminoAcid> AminoAcids
         {
-            get { return (IEnumerable<IAminoAcid>)GetValue(AminoAcidsProperty); }
+            get { return (ISequence<IAminoAcid>)GetValue(AminoAcidsProperty); }
             set
             {
                 SetValue(AminoAcidsProperty, value);
@@ -74,7 +74,7 @@ namespace Semordnilap.View
 
         private void TranscribeButton_Click(object sender, RoutedEventArgs e)
         {
-            RnaCode = Transkription.ToRna(new DNA(DnaCode)).Code.ToList();
+            RnaCode = Transkription.ToRna(new DNA(DnaCode));
         }
 
         protected virtual void OnPropertyChanged(string propertyName)
@@ -84,7 +84,7 @@ namespace Semordnilap.View
 
         private void TranslateButton_Click(object sender, RoutedEventArgs e)
         {
-            AminoAcids = Translation.ToProtein(RnaCode).ToList();
+            AminoAcids = Translation.ToProtein(RnaCode);
         }
 
         private void LoadFastaFileButton_Click(object sender, RoutedEventArgs e)
@@ -97,7 +97,7 @@ namespace Semordnilap.View
 
             using(FileStream inputStream = File.OpenRead(import.FilePath))
             {
-                AminoAcids = import.InputSequence.Parse(inputStream).ToList();
+                AminoAcids = import.InputSequence.Parse(inputStream).First();
             }
 
         }

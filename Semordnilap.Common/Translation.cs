@@ -61,7 +61,7 @@ namespace Semordnilap.Common
             return func();
         }
 
-        public static Protein ToProtein(IList<INucleobase> nucleobaseChain)
+        public static Protein ToProtein(ISequence<INucleobase> nucleobaseChain)
         {
             Debug.Assert(nucleobaseChain.Count % 3 == 0);
 

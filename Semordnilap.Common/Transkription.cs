@@ -30,7 +30,9 @@ namespace Semordnilap.Common
 
         public static RNA ToRna(DNA dna)
         {
-            return new RNA(dna.Code.Select(c => ToRna(c)).ToList());
+            var rna = new RNA();
+            rna.Add(dna.Code.Select(c => ToRna(c)).ToList());
+            return rna;
         }
 
 

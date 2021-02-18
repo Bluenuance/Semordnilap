@@ -15,6 +15,8 @@ namespace Semordnilap.Common
 
         public string Description { get; set; }
 
+        public int Count => _aminoAcids.Count;
+
         public void Add(IAminoAcid aminoAcid)
         {
             _aminoAcids.Add(aminoAcid);

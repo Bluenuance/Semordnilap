@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Semordnilap.Common
 {
-    public class RNA
+    public class RNA : ISequence<INucleobase>
     {
         public static bool ValidLetters(string letters)
         {
@@ -24,13 +25,38 @@ namespace Semordnilap.Common
             }
         }
 
-        public RNA(IList<INucleobase> code)
+        private IList<INucleobase> _nucleobases = new List<INucleobase>();
+
+        public RNA()
         {
-            Code = code;
+        }
+       
+        public string Description { get; set; }
+
+        public int Count => _nucleobases.Count;
+
+        public void Add(INucleobase nucleobase)
+        {
+            _nucleobases.Add(nucleobase);
         }
 
-        public IEnumerable<INucleobase> Code { get; }
+        public void Add(IEnumerable<INucleobase> nucleobases)
+        {
+            foreach (var nucleobase in nucleobases)
+            {
+                _nucleobases.Add(nucleobase);
+            }
+        }
 
+        public IEnumerator<INucleobase> GetEnumerator()
+        {
+            return _nucleobases.GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return _nucleobases.GetEnumerator();
+        }
     }
 
 

@@ -5,12 +5,12 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace Semordnilap.View.IO
+namespace Semordnilap.Common.IO
 {
     public interface IInputSequence
     {
-        //for now: only a amino acid can be in an input sequence
-        IEnumerable<IAminoAcid> Parse(Stream inputStream);
+        //for now: only amino acid can be in an input sequence
+        IEnumerable<ISequence<IAminoAcid>> Parse(Stream inputStream);
     }
 
     public class FastA : IInputSequence
@@ -71,19 +71,16 @@ namespace Semordnilap.View.IO
             internal void Process(StreamReader reader)
             {
                 var str = new StringBuilder();
+
                 //read line, there can be spaces
                 int r;
-                while ((r = reader.Read()) != 10 /*EOL*/)
+                while ((r = reader.Read()) != -1 /*EOF*/)
                 {
-                    if (r == -1 /*EOL*/)
+                    if (r == 10 || r == 13 /*EOL*/)
                     {
                         break;
                     }
-                    else if (r == 32 /*space*/)
-                    {
-                        continue;
-                    }
-                    else if (r == 9 /*tab*/)
+                    else if (r == 32 /*space*/ || r == 9 /*tab*/)
                     {
                         continue;
                     }
@@ -93,11 +90,10 @@ namespace Semordnilap.View.IO
                     }
                 }
                 _value += str.ToString();
-                //_value += reader.ReadLine();
             }
         }
 
-        public IEnumerable<IAminoAcid> Parse(Stream inputStream)
+        public IEnumerable<ISequence<IAminoAcid>> Parse(Stream inputStream)
         {
             var sequences = new List<Sequence>();
 
@@ -124,7 +120,7 @@ namespace Semordnilap.View.IO
                 proteins.Add(protein);
             }
 
-            return proteins.First();
+            return proteins;
         }
     }
 }

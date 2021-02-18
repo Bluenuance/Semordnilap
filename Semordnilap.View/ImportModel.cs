@@ -1,6 +1,4 @@
-﻿using Semordnilap.View.IO;
-using System;
-using System.IO;
+﻿using Semordnilap.Common.IO;
 
 namespace Semordnilap.View
 {
@@ -9,7 +7,7 @@ namespace Semordnilap.View
         public ImportModel()
         {
             //TODO: add demo to resource Files, and get path from there
-            FilePath = @"C:\bla.fasta";
+            FilePath = @"D:\Semordnilap\resources\proteins\uniprot-name dutpase+AND+reviewed yes.fasta";
             InputSequence = new FastA();
         }
 

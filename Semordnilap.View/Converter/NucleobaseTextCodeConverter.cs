@@ -11,7 +11,7 @@ namespace Semordnilap.View
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            List<INucleobase> bases = (List<INucleobase>)value;
+            IEnumerable<INucleobase> bases = (IEnumerable<INucleobase>)value;
             return new string(bases.Select(b => b.Letter).ToArray());
         }
 
